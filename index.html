@@ -17,18 +17,31 @@
     <!-- TODO: Замените на URL вашего фото (абсолютный путь) -->
     <meta property="og:image" content="https://YOUR_USERNAME.github.io/YOUR_REPO/your-photo.jpg">
     <!-- TODO: Замените на URL вашего сайта -->
-    <meta property="og:url" content="https://YOUR_USERNAME.github.io/YOUR_REPO/">
+    <meta property="og:url" content="https://nikitalina.github.io/wedding/">
     <meta property="og:type" content="website">
     
+    <!-- Slick Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Raleway:wght@300;400;500&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Marck+Script&family=Raleway:wght@300;400;500&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FAF8F5'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-style='italic' font-size='28' fill='%23C9A96E'%3EN%26A%3C/text%3E%3C/svg%3E">
 
     <style>
+        /* ===== Sacramento Cyrillic (local) ===== */
+        @font-face {
+            font-family: 'Sacramento Cyrillic';
+            src: url('Sacramento.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
         /* ===== CSS Variables ===== */
         :root {
             --color-bg: #FAF8F5;
@@ -41,7 +54,7 @@
             --color-accent-dark: #A68B55;
             --color-border: #E8E2D9;
             --color-overlay: rgba(61, 58, 54, 0.6);
-            --font-display: 'Great Vibes', cursive;
+            --font-display: 'Great Vibes' cursive;
             --font-heading: 'Cormorant Garamond', serif;
             --font-body: 'Raleway', sans-serif;
             --max-width: 1000px;
@@ -172,7 +185,7 @@
         }
 
         .hero-names {
-            font-family: var(--font-display);
+            font-family: 'Marck Script', cursive;
             font-size: clamp(48px, 10vw, 100px);
             color: var(--color-text);
             line-height: 1.2;
@@ -220,73 +233,117 @@
             50% { opacity: 0.6; height: 40px; }
         }
 
-        /* ===== PHOTO Section ===== */
+        /* ===== PHOTO SLIDER Section ===== */
         .photo-section {
-            padding: var(--section-spacing) 24px;
-            display: flex;
-            justify-content: center;
+            padding: var(--section-spacing) 0;
             background: var(--color-bg);
+            overflow: hidden;
         }
 
-        .photo-frame {
+        .slider-wrapper {
             position: relative;
-            max-width: 600px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .photo-slider {
+            margin: 0 -8px;
+        }
+
+        .photo-slider .slick-slide {
+            padding: 0 8px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0.4;
+            transform: scale(0.65);
+        }
+
+        .photo-slider .slick-slide.slick-active {
+            opacity: 0.7;
+            transform: scale(0.78);
+        }
+
+        .photo-slider .slick-slide.slick-center {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .photo-slider .slide-img {
             width: 100%;
-        }
-
-        .photo-frame::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            right: -12px;
-            bottom: -12px;
-            border: 1px solid var(--color-accent-light);
-            pointer-events: none;
-        }
-
-        .photo-frame::after {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            right: -6px;
-            bottom: -6px;
-            border: 1px solid var(--color-border);
-            pointer-events: none;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: auto;
+            height: 440px;
+            object-fit: cover;
+            border-radius: 12px;
             display: block;
-            /* TODO: Замените placeholder на ваше фото */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: box-shadow 0.5s ease;
         }
 
-        .photo-placeholder {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            background: linear-gradient(135deg, var(--color-bg-warm) 0%, #EDE8E0 50%, var(--color-bg-warm) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-light);
-            font-family: var(--font-heading);
-            font-size: 18px;
-            font-style: italic;
+        .photo-slider .slick-center .slide-img {
+            box-shadow: 0 8px 40px rgba(0,0,0,0.15);
         }
 
-        .photo-placeholder svg {
-            width: 48px;
-            height: 48px;
-            stroke: var(--color-accent-light);
-            margin-bottom: 16px;
+        /* Slick arrows */
+        .photo-slider .slick-prev,
+        .photo-slider .slick-next {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            background: rgba(255,255,255,0.9) !important;
+            backdrop-filter: blur(8px);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .photo-slider .slick-prev:hover,
+        .photo-slider .slick-next:hover {
+            background: var(--color-accent-dark) !important;
+            border-color: var(--color-accent-dark);
+        }
+
+        .photo-slider .slick-prev:before {
+            content: '❮';
+            color: var(--color-accent-dark);
+            font-size: 16px;
+            font-family: inherit;
+            opacity: 1;
+        }
+
+        .photo-slider .slick-next:before {
+            content: '❯';
+            color: var(--color-accent-dark);
+            font-size: 16px;
+            font-family: inherit;
+            opacity: 1;
+        }
+
+        .photo-slider .slick-prev:hover:before,
+        .photo-slider .slick-next:hover:before {
+            color: white;
+        }
+
+        .photo-slider .slick-prev { left: 10px; }
+        .photo-slider .slick-next { right: 10px; }
+
+        /* Slick dots */
+        .photo-slider .slick-dots {
+            bottom: -36px;
+        }
+
+        .photo-slider .slick-dots li button:before {
+            font-size: 8px;
+            color: var(--color-border);
+            opacity: 1;
+        }
+
+        .photo-slider .slick-dots li.slick-active button:before {
+            color: var(--color-accent-dark);
+            transform: scale(1.3);
         }
 
         .photo-caption {
             text-align: center;
-            margin-top: 28px;
+            margin-top: 52px;
             font-family: var(--font-display);
             font-size: 24px;
             color: var(--color-accent-dark);
@@ -302,7 +359,7 @@
         }
 
         .section-title {
-            font-family: var(--font-display);
+            font-family: 'Marck Script', cursive;
             font-size: clamp(36px, 6vw, 56px);
             text-align: center;
             color: var(--color-text);
@@ -477,7 +534,7 @@
         }
 
         .footer-names {
-            font-family: var(--font-display);
+            font-family: 'Sacramento Cyrillic', cursive;
             font-size: 32px;
             color: var(--color-accent);
             margin-bottom: 8px;
@@ -736,6 +793,17 @@
             .timeline {
                 max-width: 100%;
             }
+
+            /* Slider tablet */
+            .photo-slider .slide-img {
+                height: 360px;
+            }
+
+            .photo-slider .slick-prev,
+            .photo-slider .slick-next {
+                width: 38px;
+                height: 38px;
+            }
         }
 
         /* ===== Responsive — Mobile (≤ 480px) ===== */
@@ -755,7 +823,7 @@
             /* Hero */
             .hero {
                 padding: 48px 16px;
-                min-height: 100svh; /* safe viewport height для мобилок */
+                min-height: 100svh;
             }
 
             .hero-pretext {
@@ -776,28 +844,25 @@
                 bottom: 24px;
             }
 
-            /* Photo */
-            .photo-section {
-                padding: var(--section-spacing) 16px;
+            /* Slider mobile */
+            .photo-slider .slide-img {
+                height: 300px;
             }
 
-            .photo-frame::before {
-                top: -8px;
-                left: -8px;
-                right: -8px;
-                bottom: -8px;
+            .photo-slider .slick-prev,
+            .photo-slider .slick-next {
+                width: 32px;
+                height: 32px;
             }
 
-            .photo-frame::after {
-                top: -4px;
-                left: -4px;
-                right: -4px;
-                bottom: -4px;
+            .photo-slider .slick-prev:before,
+            .photo-slider .slick-next:before {
+                font-size: 14px;
             }
 
             .photo-caption {
                 font-size: 20px;
-                margin-top: 20px;
+                margin-top: 40px;
             }
 
             /* Sections */
@@ -1036,53 +1101,49 @@
 
         /* ===== Decorative branches ===== */
         .branch-decor {
-            position: fixed;
-            top: 0;
-            width: 180px;
-            height: 100vh;
+            position: absolute; /* было fixed — вернуть fixed чтобы откатить */
             pointer-events: none;
             z-index: 10;
-            opacity: 0.6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            opacity: 0.4;
         }
 
         .branch-decor img {
-            height: 90%;
-            width: auto;
-            object-fit: contain;
-            max-width: 200%;
+            display: block;
+            width: 250x;
+            height: 175px;
         }
 
         .branch-left {
-            left: -10px;
+            top: -30px;
+            left: -20px;
         }
 
         .branch-right {
-            right: -10px;
-        }
-
-        .branch-left img {
-            transform: rotate(5deg);
+            bottom: -30px;
+            right: -50px;
         }
 
         .branch-right img {
-            transform: rotate(-5deg) scaleX(-1);
+            transform: scaleX(-1);
         }
 
         @media (max-width: 768px) {
+            .branch-decor img {
+                width: 250px;
+                height: auto;
+            }
             .branch-decor {
-                width: 100px;
-                opacity: 0.4;
+                opacity: 0.35;
             }
         }
 
         @media (max-width: 480px) {
+            .branch-decor img {
+                width: 160px;
+                height: auto;
+            }
             .branch-decor {
-                width: 70px;
-                opacity: 0.3;
+                opacity: 0.25;
             }
         }
 
@@ -1110,21 +1171,21 @@
             color: var(--color-text-light);
             margin-top: 2px;
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- ======================== DECORATIVE BRANCHES ======================== -->
-    <div class="branch-decor branch-left">
-        <img src="olive-branch.png" alt="" loading="lazy">
-    </div>
-    <div class="branch-decor branch-right">
-        <img src="fir-branch.png" alt="" loading="lazy">
-    </div>
-
     <!-- ======================== HERO ======================== -->
     <section class="hero">
+        <!-- ===== DECORATIVE BRANCHES (привязаны к hero; вернуть наружу + fixed чтобы откатить) ===== -->
+        <div class="branch-decor branch-left">
+            <img src="olives_PNG14270.png" alt="" loading="lazy">
+        </div>
+        <div class="branch-decor branch-right">
+            <img src="vetki-sakury.png" alt="" loading="lazy">
+        </div>
         <!-- TODO: Замените текст -->
         <p class="hero-pretext">Мы приглашаем вас на нашу свадьбу</p>
         
@@ -1141,24 +1202,17 @@
         </div>
     </section>
 
-    <!-- ======================== PHOTO ======================== -->
+    <!-- ======================== PHOTO SLIDER ======================== -->
     <section class="photo-section">
-        <div class="photo-frame animate-on-scroll">
-            <!-- 
-                TODO: Замените блок .photo-placeholder на ваше фото:
-                <img src="your-photo.jpg" alt="Фото пары">
-                
-                Рекомендуемое соотношение сторон: 3:4 (портретное)
-                Рекомендуемый размер: 800x1067px
-            -->
-            <div class="photo-placeholder">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
-                </svg>
-                Ваше фото
+        <div class="slider-wrapper animate-on-scroll">
+            <div class="photo-slider" id="photoSlider">
+                <div><img class="slide-img" src="wedding 1.jpg" alt="Фото 1"></div>
+                <div><img class="slide-img" src="wedding 2.jpg" alt="Фото 2"></div>
+                <div><img class="slide-img" src="wedding 3.jpg" alt="Фото 3"></div>
+                <div><img class="slide-img" src="wedding 4.jpg" alt="Фото 4"></div>
+                <div><img class="slide-img" src="wedding 5.jpg" alt="Фото 5"></div>
             </div>
 
-            <!-- TODO: Подпись под фото (или удалите) -->
             <p class="photo-caption">Наша история любви</p>
         </div>
     </section>
@@ -1171,9 +1225,12 @@
             <p class="section-subtitle">как всё начиналось</p>
             <div class="divider"></div>
             <p class="section-text">
-                Здесь вы можете рассказать историю вашего знакомства и отношений. 
-                Напишите о том, как вы встретились, что вас объединило и почему решили быть вместе. 
-                Это может быть трогательно, забавно или романтично — главное, чтобы от души.
+                На заднем дворе общих друзей. Он в отпуске приехал отдохнуть, она просто зашла к подруге.
+                Слово за слово, под вечер кончается шашлык и они вместе идут в магазин за сосиками для жарки.
+                Еще час и он сдает обратные билеты чтобы остаться еще хоть на пару дней. 
+                Через месяц он переезжает за тысячу километров.
+                Еще через 10 месяцев, в поздке в Казань на закате он делает предложение и она соглашается. 
+                И вот мы здесь. И надеемся что вы с нами!
             </p>
         </div>
     </section>
@@ -1202,13 +1259,9 @@
 
                 <div class="detail-card animate-on-scroll">
                     <div class="detail-card-icon">✦</div>
-                    <h3>Банкет</h3>
-                    <p>
-                        17:00<br>
-                        Русская Охота
-                    </p>
+                    <h3>Просьба</h3>
                     <p class="detail-card-address">
-                        Самарская обл, м.р-н Волжский, с.п Курумоч, тер Русская Охота, зд. 1А, к. 1
+                        Просьба не дарить цветы. Если хотите порадовать молодых, лучше доложите в конверт вместо цветов.
                     </p>
                 </div>
 
@@ -1259,14 +1312,14 @@
                         <strong>Начало банкета</strong>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <!-- <div class="timeline-item">
                     <div class="timeline-time">18:00</div>
                     <div class="timeline-event">
                         <strong>Первый танец</strong>
                     </div>
-                </div>
+                </div> -->
                 <div class="timeline-item">
-                    <div class="timeline-time">22:30</div>
+                    <div class="timeline-time">23:00</div>
                     <div class="timeline-event">
                         <strong>Завершение банкета</strong>
                     </div>
@@ -1296,7 +1349,7 @@
 
         <!-- TODO: Замените ссылку и имя на свои -->
         <p class="footer-credit">
-            Сделано с ❤ — <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">Ваше имя</a>
+            Сделано с ❤ — <a href="https://github.com/nikitalina" target="_blank" rel="noopener">Женихом</a>
         </p>
     </footer>
 
@@ -1395,7 +1448,7 @@
         // Шаг 5: Скопируйте URL веб-приложения и вставьте ниже:
         //
         // ==========================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLagS6s5ofiWeaSL8CDBPKHGJmr6Oaogjqs9RpcXALcSp438aT2E6def-0bEwE0efyjQ/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYG30xSpbDLpo9UzqVnp_53zkBEaw3hEeaMOQ7REYZ25ScwKyHKiMcbO6cOdASjN-JgQ/exec';
 
         // ===== Modal Logic =====
         const modalOverlay = document.getElementById('modalOverlay');
@@ -1536,6 +1589,44 @@
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
+        });
+
+    </script>
+
+    <!-- jQuery + Slick -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $('#photoSlider').slick({
+            centerMode: true,
+            centerPadding: '0px',
+            slidesToShow: 3,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 600,
+            cssEase: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            arrows: true,
+            dots: true,
+            infinite: true,
+            swipeToSlide: true,
+            touchThreshold: 10,
+            focusOnSelect: true,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3,
+                        centerPadding: '0px'
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        centerPadding: '60px'
+                    }
+                }
+            ]
         });
     </script>
 
