@@ -35,7 +35,7 @@
 // иначе изменения не подхватятся.
 // ============================================================
 
-const SHEET_NAME = 'Sheet1'; // TODO: Измените если лист называется иначе
+const SHEET_NAME = 'Лист1'; // TODO: Измените если лист называется иначе
 const scriptProp = PropertiesService.getScriptProperties();
 
 /**
