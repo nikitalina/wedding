@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -L -o \"/c/Users/trine/OneDrive/Рабочий стол/WeddingProjject/olive-branch.png\" \"https://pngimg.com/d/olives_PNG14313.png\")",
+      "Bash(curl -L -o \"/c/Users/trine/OneDrive/Рабочий стол/WeddingProjject/fir-branch.png\" \"https://pngimg.com/d/fir_tree_PNG3693.png\")",
+      "WebFetch(domain:fonts-online.ru)",
+      "Bash(curl -L -o \"/c/Users/trine/OneDrive/Рабочий стол/WeddingProjject/sacramento-cyrillic.ttf\" \"https://fonts-online.ru/fonts/sacramento-cyrillic/download\")",
+      "WebFetch(domain:fonts.google.com)",
+      "Bash(curl -sI \"https://fonts.googleapis.com/css2?family=Sacramento&subset=cyrillic&display=swap\")",
+      "Bash(kill 306)"
+    ]
+  }
+}
