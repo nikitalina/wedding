@@ -20,9 +20,8 @@
     <meta property="og:url" content="https://nikitalina.github.io/wedding/">
     <meta property="og:type" content="website">
     
-    <!-- Slick Slider -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <!-- Swiper Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -248,22 +247,22 @@
         }
 
         .photo-slider {
-            margin: 0 -8px;
+            padding: 0 8px;
         }
 
-        .photo-slider .slick-slide {
-            padding: 0 8px;
-            transition: transform 0.5s ease, opacity 0.5s ease;
+        .photo-slider .swiper-slide {
             opacity: 0.4;
             transform: scale(0.65);
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
 
-        .photo-slider .slick-slide.slick-active {
+        .photo-slider .swiper-slide-prev,
+        .photo-slider .swiper-slide-next {
             opacity: 0.7;
             transform: scale(0.78);
         }
 
-        .photo-slider .slick-slide.slick-center {
+        .photo-slider .swiper-slide-active {
             opacity: 1;
             transform: scale(1);
         }
@@ -278,66 +277,63 @@
             transition: box-shadow 0.5s ease;
         }
 
-        .photo-slider .slick-center .slide-img {
+        .photo-slider .swiper-slide-active .slide-img {
             box-shadow: 0 8px 40px rgba(0,0,0,0.15);
         }
 
-        /* Slick arrows */
-        .photo-slider .slick-prev,
-        .photo-slider .slick-next {
+        /* Swiper arrows */
+        .photo-slider .swiper-button-prev,
+        .photo-slider .swiper-button-next {
             width: 44px;
             height: 44px;
             border-radius: 50%;
             border: 1px solid var(--color-border);
-            background: rgba(255,255,255,0.9) !important;
+            background: rgba(255,255,255,0.9);
             backdrop-filter: blur(8px);
             z-index: 10;
             transition: all 0.3s ease;
         }
 
-        .photo-slider .slick-prev:hover,
-        .photo-slider .slick-next:hover {
-            background: var(--color-accent-dark) !important;
+        .photo-slider .swiper-button-prev:hover,
+        .photo-slider .swiper-button-next:hover {
+            background: var(--color-accent-dark);
             border-color: var(--color-accent-dark);
         }
 
-        .photo-slider .slick-prev:before {
+        .photo-slider .swiper-button-prev::after {
             content: '❮';
             color: var(--color-accent-dark);
             font-size: 16px;
             font-family: inherit;
-            opacity: 1;
         }
 
-        .photo-slider .slick-next:before {
+        .photo-slider .swiper-button-next::after {
             content: '❯';
             color: var(--color-accent-dark);
             font-size: 16px;
             font-family: inherit;
-            opacity: 1;
         }
 
-        .photo-slider .slick-prev:hover:before,
-        .photo-slider .slick-next:hover:before {
+        .photo-slider .swiper-button-prev:hover::after,
+        .photo-slider .swiper-button-next:hover::after {
             color: white;
         }
 
-        .photo-slider .slick-prev { left: 10px; }
-        .photo-slider .slick-next { right: 10px; }
-
-        /* Slick dots */
-        .photo-slider .slick-dots {
-            bottom: -36px;
+        /* Swiper pagination dots */
+        .photo-slider .swiper-pagination {
+            position: relative;
+            margin-top: 24px;
         }
 
-        .photo-slider .slick-dots li button:before {
-            font-size: 8px;
-            color: var(--color-border);
+        .photo-slider .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            background: var(--color-border);
             opacity: 1;
         }
 
-        .photo-slider .slick-dots li.slick-active button:before {
-            color: var(--color-accent-dark);
+        .photo-slider .swiper-pagination-bullet-active {
+            background: var(--color-accent-dark);
             transform: scale(1.3);
         }
 
@@ -795,12 +791,20 @@
             }
 
             /* Slider tablet */
+            .photo-slider .swiper-slide {
+                transform: scale(0.75);
+                opacity: 0.5;
+            }
+            .photo-slider .swiper-slide-active {
+                transform: scale(1);
+                opacity: 1;
+            }
             .photo-slider .slide-img {
                 height: 360px;
             }
 
-            .photo-slider .slick-prev,
-            .photo-slider .slick-next {
+            .photo-slider .swiper-button-prev,
+            .photo-slider .swiper-button-next {
                 width: 38px;
                 height: 38px;
             }
@@ -845,18 +849,27 @@
             }
 
             /* Slider mobile */
+            .photo-slider .swiper-slide {
+                transform: scale(0.85);
+                opacity: 0.5;
+            }
+            .photo-slider .swiper-slide-active {
+                transform: scale(1);
+                opacity: 1;
+            }
             .photo-slider .slide-img {
-                height: 300px;
+                height: 280px;
+                border-radius: 8px;
             }
 
-            .photo-slider .slick-prev,
-            .photo-slider .slick-next {
+            .photo-slider .swiper-button-prev,
+            .photo-slider .swiper-button-next {
                 width: 32px;
                 height: 32px;
             }
 
-            .photo-slider .slick-prev:before,
-            .photo-slider .slick-next:before {
+            .photo-slider .swiper-button-prev::after,
+            .photo-slider .swiper-button-next::after {
                 font-size: 14px;
             }
 
@@ -1179,13 +1192,14 @@
 
     <!-- ======================== HERO ======================== -->
     <section class="hero">
-        <!-- ===== DECORATIVE BRANCHES (привязаны к hero; вернуть наружу + fixed чтобы откатить) ===== -->
+        <!-- ===== DECORATIVE BRANCHES (раскомментировать чтобы вернуть) =====
         <div class="branch-decor branch-left">
             <img src="olives_PNG14270.png" alt="" loading="lazy">
         </div>
         <div class="branch-decor branch-right">
             <img src="vetki-sakury.png" alt="" loading="lazy">
         </div>
+        ===== -->
         <!-- TODO: Замените текст -->
         <p class="hero-pretext">Мы приглашаем вас на нашу свадьбу</p>
         
@@ -1205,12 +1219,17 @@
     <!-- ======================== PHOTO SLIDER ======================== -->
     <section class="photo-section">
         <div class="slider-wrapper animate-on-scroll">
-            <div class="photo-slider" id="photoSlider">
-                <div><img class="slide-img" src="wedding 1.jpg" alt="Фото 1"></div>
-                <div><img class="slide-img" src="wedding 2.jpg" alt="Фото 2"></div>
-                <div><img class="slide-img" src="wedding 3.jpg" alt="Фото 3"></div>
-                <div><img class="slide-img" src="wedding 4.jpg" alt="Фото 4"></div>
-                <div><img class="slide-img" src="wedding 5.jpg" alt="Фото 5"></div>
+            <div class="photo-slider swiper" id="photoSlider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img class="slide-img" src="wedding 1.jpg" alt="Фото 1"></div>
+                    <div class="swiper-slide"><img class="slide-img" src="wedding 2.jpg" alt="Фото 2"></div>
+                    <div class="swiper-slide"><img class="slide-img" src="wedding 3.jpg" alt="Фото 3"></div>
+                    <div class="swiper-slide"><img class="slide-img" src="wedding 4.jpg" alt="Фото 4"></div>
+                    <div class="swiper-slide"><img class="slide-img" src="wedding 5.jpg" alt="Фото 5"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
             </div>
 
             <p class="photo-caption">Наша история любви</p>
@@ -1226,11 +1245,11 @@
             <div class="divider"></div>
             <p class="section-text">
                 На заднем дворе общих друзей. Он в отпуске приехал отдохнуть, она просто зашла к подруге.
-                Слово за слово, под вечер кончается шашлык и они вместе идут в магазин за сосиками для жарки.
-                Еще час и он сдает обратные билеты чтобы остаться еще хоть на пару дней. 
+                Слово за слово, под вечер кончается шашлык, и они вместе идут в магазин за сосиками для жарки.
+                Ещё час — и он сдаёт обратные билеты, чтобы остаться ещё хоть на пару дней.
                 Через месяц он переезжает за тысячу километров.
-                Еще через 10 месяцев, в поздке в Казань на закате он делает предложение и она соглашается. 
-                И вот мы здесь. И надеемся что вы с нами!
+                Ещё через год, в поездке в Казань, на закате он делает предложение — и она соглашается.
+                И вот мы здесь. И надеемся, что вы с нами!
             </p>
         </div>
     </section>
@@ -1261,7 +1280,7 @@
                     <div class="detail-card-icon">✦</div>
                     <h3>Просьба</h3>
                     <p class="detail-card-address">
-                        Просьба не дарить цветы. Если хотите порадовать молодых, лучше доложите в конверт вместо цветов.
+                        Просьба не дарить цветы. Вместо цветов будем рады вкладу в наш семейный фонд. 
                     </p>
                 </div>
 
@@ -1593,40 +1612,40 @@
 
     </script>
 
-    <!-- jQuery + Slick -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        $('#photoSlider').slick({
-            centerMode: true,
-            centerPadding: '0px',
-            slidesToShow: 3,
-            autoplay: true,
-            autoplaySpeed: 3000,
+        new Swiper('#photoSlider', {
+            slidesPerView: 3,
+            centeredSlides: true,
+            loop: true,
             speed: 600,
-            cssEase: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            arrows: true,
-            dots: true,
-            infinite: true,
-            swipeToSlide: true,
-            touchThreshold: 10,
-            focusOnSelect: true,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 3,
-                        centerPadding: '0px'
-                    }
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 24,
                 },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        centerPadding: '60px'
-                    }
+                481: {
+                    slidesPerView: 1,
+                    spaceBetween: 40,
+                },
+                769: {
+                    slidesPerView: 3,
+                    spaceBetween: 16,
                 }
-            ]
+            }
         });
     </script>
 
