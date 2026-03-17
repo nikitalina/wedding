@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g fill="none" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Body -->
+    <path d="M20 38c0 0-2-12 8-18s18-4 20-2c2 2-2 8-2 8s6-2 8 2c-4 2-8 2-8 2s4 4 2 8c-4-2-8-6-8-6l-6 4" fill="#f5f0e8"/>
+    <!-- Wing -->
+    <path d="M30 24c4-2 10-2 14 0c-1 4-5 8-10 10" fill="#ebe5d6"/>
+    <!-- Tail -->
+    <path d="M20 38c-4 2-8 6-10 8c-1-4 0-8 2-10" fill="#f5f0e8"/>
+    <!-- Head -->
+    <circle cx="44" cy="22" r="2.5" fill="#f5f0e8"/>
+    <!-- Eye -->
+    <circle cx="45" cy="21.5" r="0.8" fill="#b8860b"/>
+    <!-- Beak -->
+    <path d="M47 22.5l3-0.5l-2 2z" fill="#d4a44a"/>
+    <!-- Olive branch -->
+    <path d="M46 25c2 2 4 4 6 4" stroke="#8b9e6b" stroke-width="1.2"/>
+    <ellipse cx="50" cy="27" rx="2" ry="1" fill="#8b9e6b" transform="rotate(-20 50 27)"/>
+    <ellipse cx="52" cy="28.5" rx="1.8" ry="0.9" fill="#a3b07a" transform="rotate(-30 52 28.5)"/>
+  </g>
+</svg>
