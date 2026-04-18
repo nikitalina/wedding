@@ -7,7 +7,15 @@
       "Bash(curl -L -o \"/c/Users/trine/OneDrive/Рабочий стол/WeddingProjject/sacramento-cyrillic.ttf\" \"https://fonts-online.ru/fonts/sacramento-cyrillic/download\")",
       "WebFetch(domain:fonts.google.com)",
       "Bash(curl -sI \"https://fonts.googleapis.com/css2?family=Sacramento&subset=cyrillic&display=swap\")",
-      "Bash(kill 306)"
+      "Bash(kill 306)",
+      "Bash(curl -L -o \"/c/Users/trine/OneDrive/Рабочий стол/WeddingProjject/vetki-sakury.png\" -H \"User-Agent: Mozilla/5.0\" \"https://pngimg.com/d/sakura_PNG4.png\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python3 -c \"print\\(''works''\\)\")",
+      "Bash(ls /c/Python*/python.exe)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/trine/AppData/Local/Programs/Python/**)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }

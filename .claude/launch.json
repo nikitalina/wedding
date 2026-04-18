@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "wedding-site",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/c/Users/trine/OneDrive/Рабочий стол/WeddingProjject"],
+      "runtimeExecutable": "C:\\Users\\trine\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "C:\\Users\\trine\\OneDrive\\Рабочий стол\\WeddingProjject"],
       "port": 8080
     }
   ]
